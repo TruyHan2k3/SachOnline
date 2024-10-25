@@ -1,0 +1,42 @@
+﻿
+<style type="text/css">
+    td {
+        height: 40px;
+    }
+
+    .center {
+        text-align: center;
+    }
+</style>
+<h4 style="color:red; text-align:center;">@ViewBag.ThongBao</h4>
+<h2 style="text-align:center;">ĐĂNG NHẬP</h2>
+<table align="center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr>
+            <td>Tên Đăng Nhập:</td>
+            <td>
+                @Html.TextBox("TenDN")
+                @ViewData["err1"]
+            </td>
+        </tr>
+        <tr>
+            <td>Mật Khẩu:</td>
+            <td>
+                @Html.Password("MatKhau")
+                @ViewBag.Err2
+            </td>
+        </tr>
+        <div class="center">
+        <td>
+            <input type="submit" value="Đăng Nhập" />
+        </td>
+    </div>
+
+    }
+</table>
+<div class="center">
+    <a href="@Url.Action("DangKy", "User")" class="title">Bạn Chưa Có Tài Khoản?</a>
+</div>
+

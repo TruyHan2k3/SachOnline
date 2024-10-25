@@ -1,0 +1,49 @@
+﻿@model SachOnline.Models.SACH
+<style type="text/css">
+    .tensach{
+        text-align : center;
+        font-size : 50px;
+    }
+    .motasach {
+        text-align: justify;
+        margin: 20px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        line-height: 1.6;
+        font-size: 16px;
+        word-wrap: break-word;
+    }
+
+        .motasach p {
+            margin-bottom: 10px;
+            color: #333;
+            white-space: normal;
+            word-wrap: break-word;
+    }
+</style>
+
+@{
+    ViewBag.Title = "Chi Tiết Sách";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="thumbnail">
+    <h4 class="tensach">@Model.TenSach</h4>
+    <img src="~/Images/Slider/@Model.AnhBia" alt="@Model.TenSach" />
+    <div class="motasach"title="@Model.MoTa" >
+        <p>
+            @Html.Raw(Model.MoTa.ToString().Replace("\n", "<br>"))
+        </p>
+    </div>
+    <p><strong>Ngày cập nhật:</strong> @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)</p>
+    <p><strong>Giá bán:</strong> <span style="color:red;">@String.Format("{0:#,##0}", Model.GiaBan) VNĐ</span></p>
+    <p class="addtocard">
+        <a href="@Url.Action("ThemGioHang", "GioHang", new { id = Model.MaSach, url = Request.Url.ToString() }) "
+           class="btn btn-primary" role="button">
+            <span class="glyphicon glyphicon-shopping-cart"
+                  aria-hidden="true"></span> Add to Cart
+        </a>
+    </p>
+</div>

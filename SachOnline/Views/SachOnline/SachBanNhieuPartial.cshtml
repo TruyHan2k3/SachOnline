@@ -1,0 +1,45 @@
+﻿<style>
+    .container {
+        min-height: 500px;
+        padding: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .thumbnail {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease;
+    }
+        .thumbnail img {
+            object-fit: cover; 
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+</style>
+<div class="container">
+    <hr>
+    <div class="row text-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="thumbnail">
+                    <img src="~/Images/Slider/@item.AnhBia" alt="Thumbnail Image 1" class="img-responsive img-rounded imgbook">
+                    <div class="caption">
+                        <h3 title="@item.TenSach" ; style="min-height : 80px">
+                            <a href="@Url.Action("ChiTietSach", "SachOnline", new {id = item.MaSach})">@item.TenSach</a>
+                        </h3>
+                        @*@<p title="@item.MoTa">@item.MoTa</p>*@
+                        <p><a href="@Url.Action("ThemGioHang", "GioHang", new { id = item.MaSach, url = Request.Url.ToString() })" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Add to cart</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

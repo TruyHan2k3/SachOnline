@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .thumbnail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+        .thumbnail img {
+            object-fit: cover;
+            max-width: 100%;
+            height: auto;
+        }
+
+    .caption h3 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+    .caption p {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow: visible;
+    }
+
+    .pagination {
+        display: inline-block;
+    }
+
+        .pagination li {
+            display: inline;
+        }
+
+</style>
+
+<h2 class="text-center">Truyện Mới</h2>
+<hr>
+<div class="row text-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail">
+                <img src="~/Images/Slider/@item.AnhBia" alt="Thumbnail Image 1" class="img-responsive img-rounded imgbook">
+                <div class="caption">
+                    <h3 title="@item.TenSach" ; style="min-height : 70px">
+                        <a href="@Url.Action("ChiTietSach", "SachOnline", new {id = item.MaSach})">@item.TenSach</a>
+                    </h3>                   
+                    @*@<p title="@item.MoTa">@item.MoTa</p>*@
+                    <p><a href="@Url.Action("ThemGioHang", "GioHang", new { id = item.MaSach, url = Request.Url.PathAndQuery })" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Add to cart</a></p>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+    
+
+<nav class="text-center">
+    <ul class="pagination">
+        <li><a href="~/SachOnline/Index" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+        <li class="active"><a href="~/SachOnline/Index">1</a></li>
+        <li><a href="~/SachOnline/Index">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li class="disabled"><a href="#">5</a></li>
+        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+    </ul>
+</nav>
